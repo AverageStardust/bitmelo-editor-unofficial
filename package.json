@@ -4,6 +4,10 @@
 	"description": "Work on Bitmelo art, sound and tilemaps in VS code.",
 	"icon": "images/icon.png",
 	"version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/WDSTEVE/bitmelo-editor-unofficial.git"
+	},
 	"engines": {
 		"vscode": "^1.69.0"
 	},
@@ -11,9 +15,9 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:bitmelo-editor-unofficial.init",
-        "onCommand:bitmelo-editor-unofficial.open",
-        "onCommand:bitmelo-editor-unofficial.syncCode"
+		"onCommand:bitmelo-editor-unofficial.init",
+		"onCommand:bitmelo-editor-unofficial.open",
+		"onCommand:bitmelo-editor-unofficial.syncCode"
 	],
 	"main": "./out/extension",
 	"contributes": {
@@ -41,13 +45,12 @@
 		"lint": "eslint ."
 	},
 	"devDependencies": {
-        "@types/vscode": "^1.69.0",
-        "@types/glob": "^7.2.0",
-        "@types/node": "16.x",
-        "eslint": "^8.18.0",
-        "glob": "^8.0.3",
-        "typescript": "^4.7.4",
-        "@vscode/test-electron": "^2.1.5"
-    }
-
+		"@types/vscode": "^1.69.0",
+		"@types/glob": "^7.2.0",
+		"@types/node": "16.x",
+		"eslint": "^8.18.0",
+		"glob": "^8.0.3",
+		"typescript": "^4.7.4",
+		"@vscode/test-electron": "^2.1.5"
+	}
 }

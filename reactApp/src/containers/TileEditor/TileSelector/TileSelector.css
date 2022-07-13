@@ -1,0 +1,47 @@
+.tile-selector {
+  bottom: 0;
+  right: 16px;
+  position: absolute;
+  z-index: 20;
+  background-color: #181a20;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+.tile-selector .num-picker {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+.tile-selector .text-input input {
+  margin-left: 0;
+}
+.tile-selector .text-input .controls {
+  width: 100%;
+}
+.tile-selector .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tile-selector .content.closed {
+  display: none;
+}
+.tile-selector canvas {
+  margin: 8px;
+}
+.tile-selector .std-btn {
+  margin-bottom: 8px;
+}
+
+.tile-selector.open {
+  min-width: 300px;
+}
+.tile-selector.open .toggle-header svg {
+  transform: scaleY(-1);
+}
+
+.tile-selector.closed {
+  min-width: 300px;
+  min-height: 32px;
+  overflow: hidden;
+}/*# sourceMappingURL=TileSelector.css.map */

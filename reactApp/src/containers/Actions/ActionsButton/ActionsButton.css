@@ -1,0 +1,14 @@
+.actions-button-container {
+  margin-left: 8px;
+  position: relative;
+}
+.actions-button-container .actions-btn .isvg, .actions-button-container .actions-btn svg {
+  fill: #111;
+  stroke: #111;
+}
+.actions-button-container .actions-btn:hover {
+  background-color: #82df8f;
+}
+.actions-button-container .drop-down-menu {
+  margin-top: 36px;
+}/*# sourceMappingURL=ActionsButton.css.map */

@@ -1,0 +1,15 @@
+.import-palette-modal .modal-content {
+  display: block !important;
+  max-height: 500px;
+  height: 90%;
+  overflow-y: auto;
+}
+.import-palette-modal .import-mode-container {
+  margin-bottom: 16px;
+}
+.import-palette-modal .import-from-png {
+  margin-bottom: 8px;
+}
+.import-palette-modal hr {
+  width: 100%;
+}/*# sourceMappingURL=ImportPaletteModal.css.map */

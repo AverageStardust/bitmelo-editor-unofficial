@@ -1,0 +1,38 @@
+.about {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 64px;
+}
+.about .bitmelo-logo {
+  margin-top: 16px;
+}
+.about .version {
+  width: 250px;
+  text-align: right;
+  font-size: 13px;
+  color: #bbb;
+}
+.about h2 {
+  color: #72ca7e;
+  width: 640px;
+  border-bottom: 2px solid #72ca7e;
+}
+.about p {
+  width: 600px;
+  line-height: 1.25;
+}
+.about .welcome {
+  margin-top: 48px;
+}
+.about .for-sale {
+  text-align: center;
+  font-size: 20px;
+}
+.about .for-sale:hover {
+  color: rgb(205, 248, 149);
+}
+.about .strike {
+  text-decoration: line-through;
+}/*# sourceMappingURL=About.css.map */

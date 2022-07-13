@@ -1,0 +1,21 @@
+
+@import '../../style/colors.scss';
+
+.card {
+  margin: 8px;
+  padding: 0;
+  background-color: $surface-color;
+  color: $on-surface-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.75);
+  border-radius: 4px;
+
+  .title {
+    align-self: flex-start;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+}

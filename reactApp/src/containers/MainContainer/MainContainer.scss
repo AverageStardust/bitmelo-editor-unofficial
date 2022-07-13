@@ -1,0 +1,56 @@
+
+@import '../../style//colors.scss';
+.main-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+
+  user-select: none;
+  -moz-user-select: -moz-none;
+
+  .main-top-bar {
+    .create-account-btn {
+      background-color: $highlight-color;
+      margin: 4px 0;
+      padding: 0 8px;
+      align-self: stretch;
+      font-weight: bold;
+      border-radius: 5px;
+      border: 1px solid #000000;
+    }
+
+    .log-in-btn {
+      margin-left: 8px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .explore-btn {
+      padding: 2px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: $primary-color;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: $primary-light-color;
+      }
+
+      .isvg {
+        width: 32px;
+        height: 32px;
+        svg {
+          width: 32px;
+          height: 32px;
+
+          fill: $on-primary-color;
+          stroke: $on-primary-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+.text-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+.text-input input {
+  border: 2px solid #72ca7e;
+  background-color: #101012;
+  color: #ddd;
+  font-size: 18px;
+  padding: 4px;
+  width: 200px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+.text-input input:focus {
+  outline: none;
+  background-color: #72ca7e;
+  border-radius: 4px;
+  caret-color: #111;
+  color: #111;
+}
+.text-input .title {
+  font-weight: bold;
+  width: 50%;
+  text-align: right;
+}
+.text-input .controls {
+  width: 50%;
+}
+.text-input.vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+.text-input.vertical .controls {
+  width: initial;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.text-input.vertical input {
+  width: initial;
+  margin: 0;
+}
+.text-input.vertical .title {
+  width: initial;
+  align-self: flex-start;
+}
+.text-input .length-count {
+  font-size: 12px;
+  align-self: flex-end;
+  margin-top: 4px;
+}/*# sourceMappingURL=TextInput.css.map */

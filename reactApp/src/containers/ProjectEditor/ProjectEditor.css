@@ -1,0 +1,34 @@
+.project-editor {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.project-editor .std-btn {
+  margin-top: 16px;
+}
+.project-editor .tile-size-display {
+  width: 100%;
+  margin-top: 16px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.project-editor .text-input {
+  margin-top: 16px;
+  width: 640px;
+}
+.project-editor .num-picker {
+  margin-top: 16px;
+  width: 640px;
+}
+.project-editor .card {
+  width: 640px;
+  margin-top: 16px;
+}
+.project-editor .checkbox {
+  width: 100%;
+  margin-top: 16px;
+}/*# sourceMappingURL=ProjectEditor.css.map */

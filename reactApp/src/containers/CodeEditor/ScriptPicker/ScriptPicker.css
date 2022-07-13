@@ -1,0 +1,123 @@
+.script-picker {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.script-picker .index-display {
+  font-weight: bold;
+  margin-right: 4px;
+  margin-left: 16px;
+}
+.script-picker .text-input {
+  margin-top: 0;
+}
+.script-picker .text-input input {
+  border-radius: 4px 0 0 4px;
+}
+.script-picker .toggle-btn {
+  width: 32px;
+  height: 32px;
+  background-color: #72ca7e;
+  border-radius: 0 4px 4px 0;
+}
+.script-picker .toggle-btn .isvg {
+  width: 24px;
+  height: 24px;
+  transform: scaleY(-1);
+}
+.script-picker .toggle-btn .isvg svg {
+  width: 24px;
+  height: 24px;
+}
+.script-picker .toggle-btn.open .isvg {
+  transform: scaleY(1);
+}
+.script-picker .toggle-btn:hover {
+  background-color: #82df8f;
+}
+.script-picker .drop-down {
+  position: absolute;
+  top: 0;
+  left: 16px;
+  background-color: #2c2f35;
+  color: #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 1px solid black;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-top: 34px;
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+.script-picker .drop-down .script-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+  background-color: #222429;
+  min-height: 32px;
+}
+.script-picker .drop-down .script-item:hover {
+  background-color: #3d4149;
+}
+.script-picker .drop-down .script-item.selected {
+  background-color: #2c2f35;
+}
+.script-picker .drop-down .script-item.selected:hover {
+  background-color: #3d4149;
+}
+.script-picker .drop-down .script-item .index {
+  margin: 0 8px;
+}
+.script-picker .drop-down .script-item .control-btn {
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  background-color: #72ca7e;
+  margin: 2px;
+  border-radius: 4px;
+}
+.script-picker .drop-down .script-item .control-btn .isvg {
+  width: 24px;
+  height: 24px;
+  fill: #111;
+  stroke: #111;
+}
+.script-picker .drop-down .script-item .control-btn .isvg svg {
+  width: 24px;
+  height: 24px;
+}
+.script-picker .drop-down .script-item .control-btn:hover {
+  background-color: #82df8f;
+}
+.script-picker .drop-down .script-item .button-spacer {
+  width: 30px;
+  margin: 2px;
+}
+.script-picker .drop-down .script-item .move-down .isvg {
+  transform: scaleY(-1);
+}
+.script-picker .drop-down .script-item .delete {
+  margin-right: 4px;
+}
+.script-picker .drop-down .script-item .script-name {
+  align-self: stretch;
+  flex-grow: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: 0 8px;
+}
+.script-picker .drop-down .script-item .script-name span {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  min-width: 0;
+}
+.script-picker .drop-down .add-btn {
+  height: 32px;
+  min-height: 32px;
+}
+.script-picker .drop-down .add-btn:hover {
+  background-color: #3d4149;
+}/*# sourceMappingURL=ScriptPicker.css.map */

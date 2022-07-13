@@ -1,0 +1,26 @@
+
+.changelog {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+
+  .second {
+    margin-top: 16px;
+  }
+
+  .changelog-item {
+    display: flex;
+
+    .log-version {
+      align-content: flex-start;
+      flex-grow: 0;
+      padding: 32px;
+      padding-top: 0;
+      font-weight: bold;
+    }
+
+    .version-items {
+      flex-grow: 1;
+    }
+  }
+}

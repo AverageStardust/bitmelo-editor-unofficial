@@ -1,0 +1,25 @@
+.palette-item {
+  align-self: stretch;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.palette-item .name {
+  font-weight: bold;
+}
+.palette-item .author {
+  font-size: 12px;
+}
+.palette-item .color-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.palette-item .color-container .color {
+  width: 24px;
+  height: 24px;
+}
+.palette-item .std-btn {
+  margin-top: 8px;
+  align-self: center;
+}/*# sourceMappingURL=PaletteItem.css.map */

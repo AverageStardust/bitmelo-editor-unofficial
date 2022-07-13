@@ -1,0 +1,13 @@
+.release-editor {
+  width: 640px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.release-editor .num-picker {
+  width: 50%;
+}
+.release-editor .select {
+  width: 50%;
+}/*# sourceMappingURL=ReleaseEditor.css.map */

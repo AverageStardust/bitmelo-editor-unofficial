@@ -1,0 +1,89 @@
+.navigation-tab {
+  background-color: #181a20;
+  flex-grow: 0;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -moz-user-select: -moz-none;
+}
+.navigation-tab .toggle-panel {
+  height: 40px;
+  background-color: #62b46d;
+  box-shadow: 0 4px 2px -2px #000;
+}
+.navigation-tab .toggle-panel svg {
+  fill: #111;
+  stroke: #111;
+}
+.navigation-tab .button-tabs {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.navigation-tab .btn {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.25s;
+}
+.navigation-tab .btn svg {
+  width: 28px;
+}
+.navigation-tab .btn:hover {
+  background-color: #72ca7e;
+  color: #111;
+}
+.navigation-tab .btn:hover svg {
+  fill: #111;
+  stroke: #111;
+}
+.navigation-tab .btn.active {
+  background-color: #c7c7c7;
+  color: #111;
+}
+.navigation-tab .btn.active svg {
+  fill: #111;
+  stroke: #111;
+}
+.navigation-tab .toggle-panel:hover {
+  background-color: #82df8f;
+}
+.navigation-tab .missing-hamburger {
+  height: 40px;
+  background-color: #62b46d;
+}
+
+.navigation-tab.open {
+  width: 200px;
+}
+.navigation-tab.open .btn {
+  justify-content: flex-start;
+  padding-left: 12px;
+}
+.navigation-tab.open .btn .btn-title {
+  padding-left: 16px;
+  font-size: 14px;
+}
+
+.navigation-tab.floating {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10000;
+}
+
+.navigation-tab.open.floating {
+  box-shadow: 8px 0 2px -2px rgba(0, 0, 0, 0.5);
+}
+
+.nav-spacer {
+  width: 40px;
+}/*# sourceMappingURL=NavigationTab.css.map */

@@ -1,0 +1,24 @@
+.instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.instructions .instructions-container {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 16px;
+  margin-bottom: 64px;
+}
+.instructions .instructions-container .text-input {
+  width: 100%;
+  margin-top: 16px;
+}
+.instructions h4 {
+  font-size: 14px;
+  margin-top: 32px;
+  margin-bottom: 0;
+  color: #aaa;
+}/*# sourceMappingURL=Instructions.css.map */

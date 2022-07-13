@@ -1,0 +1,107 @@
+
+@import '../../style/colors.scss';
+@import '../../style/media.scss';
+
+.reference-tab {
+  background-color: $background-light-color;
+  flex-grow: 0;
+  position: relative;
+  width: 548px;
+  z-index: 5000;
+  display: flex;
+  flex-direction: row;
+
+  .reference-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    img {
+      max-width: 512px;
+    }
+  }
+
+  .toggle-btn {
+    width: 20px;
+    background-color: $background-lighter-color;
+
+    .isvg {
+      svg {
+        width: 12px;
+      }
+    }
+  }
+
+  .toggle-btn:hover {
+    background-color: $primary-dark-color;
+
+    svg {
+      fill: $on-primary-color;
+      stroke: $on-primary-color;
+    }
+  }
+
+  .top-bar {
+    background-color: $secondary-color;
+
+    .btn {
+      svg {
+        fill: $on-secondary-color;
+        stroke: $on-secondary-color;
+      }
+    }
+
+    .btn:hover {
+      background-color: $secondary-dark-color;
+    }
+  }
+}
+
+.reference-tab.floating {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: -8px 0 2px -2px rgba( 0, 0, 0, 0.5 );
+}
+
+.reference-tab.floating.closed {
+  box-shadow: none;
+}
+
+.reference-tab.closed {
+  width: 20px;
+  border-left: none;
+
+  .reference-main {
+    width: 0;
+  }
+
+  .toggle-btn {
+
+    .isvg {
+      svg {
+        transform: scaleX( -1 );
+      }
+    }
+  }
+}
+
+.ref-spacer {
+  width: 20px;
+}
+
+@media #{ $desktop-small } {
+  .reference-tab {
+    width: 420px;
+
+    .reference-main {
+      img {
+        max-width: 384px;
+      }
+    }
+
+  }
+}
+

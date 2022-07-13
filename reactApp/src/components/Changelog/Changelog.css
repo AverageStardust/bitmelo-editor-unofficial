@@ -1,0 +1,21 @@
+.changelog {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+.changelog .second {
+  margin-top: 16px;
+}
+.changelog .changelog-item {
+  display: flex;
+}
+.changelog .changelog-item .log-version {
+  align-content: flex-start;
+  flex-grow: 0;
+  padding: 32px;
+  padding-top: 0;
+  font-weight: bold;
+}
+.changelog .changelog-item .version-items {
+  flex-grow: 1;
+}/*# sourceMappingURL=Changelog.css.map */

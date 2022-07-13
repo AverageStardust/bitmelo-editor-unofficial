@@ -1,0 +1,23 @@
+.sound-piano {
+  align-self: stretch;
+  background-color: #000000;
+  padding: 8px 0 8px 0;
+}
+.sound-piano .piano-controls {
+  width: 100%;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+}
+.sound-piano .piano-controls .num-picker {
+  margin: 0 8px;
+}
+.sound-piano .piano-controls .num-picker .title {
+  width: initial;
+}
+.sound-piano .piano-controls .num-picker .controls {
+  width: initial;
+}
+.sound-piano .piano-controls .range-slider {
+  margin: 0 8px;
+}/*# sourceMappingURL=SoundPiano.css.map */

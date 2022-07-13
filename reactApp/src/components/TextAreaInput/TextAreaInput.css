@@ -1,0 +1,35 @@
+.text-area-input {
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  margin-top: 8px;
+}
+.text-area-input textarea {
+  width: 100%;
+  resize: none;
+  border: 2px solid #72ca7e;
+  background-color: #101012;
+  color: #ddd;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 0;
+}
+.text-area-input textarea:focus {
+  outline: none;
+  background-color: #72ca7e;
+  border-radius: 4px;
+  caret-color: #111;
+  color: #111;
+}
+.text-area-input .title {
+  font-weight: bold;
+  align-self: flex-start;
+}
+.text-area-input .length-count {
+  font-size: 12px;
+  align-self: flex-end;
+  margin-top: 2px;
+  text-align: right;
+}/*# sourceMappingURL=TextAreaInput.css.map */

@@ -1,0 +1,50 @@
+.piano {
+  align-self: stretch;
+  background-color: #181a20;
+  height: 140px;
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 10px;
+  margin-left: 10px;
+  touch-action: none;
+}
+.piano .btn.octave-btn {
+  width: 40px;
+  background-color: #72ca7e;
+}
+.piano .btn.octave-btn svg {
+  fill: #111;
+  stroke: #111;
+}
+.piano .octave-btn.left {
+  border-right: 4px solid black;
+  border-radius: 8px 0 0 8px;
+}
+.piano .octave-btn.right {
+  border-left: 4px solid black;
+  border-radius: 0 8px 8px 0;
+}
+.piano .btn.octave-btn:hover {
+  background-color: #62b46d;
+}
+.piano .btn.octave-btn.left .isvg {
+  transform: scaleX(-1);
+}
+.piano .scroll-container {
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+}
+.piano .scroll-container .keys-container {
+  position: absolute;
+  left: 300px;
+  display: flex;
+  height: 100%;
+  align-items: stretch;
+  transition-property: left;
+  transition-duration: 0.5s;
+}
+.piano .scroll-container .keys-container .octave {
+  display: flex;
+  position: relative;
+}/*# sourceMappingURL=Piano.css.map */

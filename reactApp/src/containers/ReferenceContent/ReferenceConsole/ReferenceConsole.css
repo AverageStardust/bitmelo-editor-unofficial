@@ -1,0 +1,38 @@
+.reference-console {
+  font-size: 14px;
+  color: #ddd;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: stretch;
+}
+.reference-console pre {
+  margin: 0;
+}
+.reference-console .scroll-container {
+  flex-grow: 1;
+}
+.reference-console .scroll-container .log {
+  padding: 8px 16px;
+  border-bottom: 1px solid #000000;
+}
+.reference-console .scroll-container .warn {
+  color: rgb(239, 245, 185);
+}
+.reference-console .scroll-container .error {
+  color: rgb(230, 167, 167);
+}
+.reference-console .console-controls {
+  background-color: #101012;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+.reference-console .console-controls .checkbox .title {
+  width: initial;
+}
+.reference-console .console-controls .checkbox .controls {
+  width: initial;
+}/*# sourceMappingURL=ReferenceConsole.css.map */

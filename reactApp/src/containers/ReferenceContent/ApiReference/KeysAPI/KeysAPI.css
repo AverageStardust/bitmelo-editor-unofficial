@@ -1,0 +1,18 @@
+.api-keys {
+  margin: 10px;
+  margin-bottom: 64px;
+}
+.api-keys .description {
+  margin-bottom: 16px;
+}
+.api-keys .keys-item {
+  padding: 8px 4px;
+  display: flex;
+  align-items: center;
+}
+.api-keys .keys-item .value {
+  margin-left: 8px;
+}
+.api-keys .keys-item:nth-child(odd) {
+  background-color: #101012;
+}/*# sourceMappingURL=KeysAPI.css.map */

@@ -1,0 +1,14 @@
+.tilemap-editor {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.tilemap-editor .editor-section {
+  align-self: stretch;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  height: 10%;
+}/*# sourceMappingURL=TilemapEditor.css.map */

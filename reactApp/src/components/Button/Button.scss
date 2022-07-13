@@ -1,0 +1,50 @@
+
+@import '../../style/colors.scss';
+
+.btn {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+  outline: inherit;
+
+  transition: all 0.25s;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.std-btn {
+  background-color: $primary-color;
+  color: $on-primary-color;
+  padding: 5px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.std-btn:hover {
+  background-color: $primary-light-color;
+}
+
+.account-btn {
+  margin: 0;
+  align-self: stretch;
+  background-color: $primary-light-color;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 4px;
+}
+
+.account-btn:hover {
+  background-color: $primary-color;
+}
+
+.account-btn:disabled {
+  background-color: #aaa;
+}
+

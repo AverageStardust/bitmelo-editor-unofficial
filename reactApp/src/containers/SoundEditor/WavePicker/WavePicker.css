@@ -1,0 +1,9 @@
+.wave-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 12px 0;
+}
+.wave-picker .select {
+  margin: 0;
+}/*# sourceMappingURL=WavePicker.css.map */

@@ -1,0 +1,65 @@
+.tool-settings {
+  width: 640px;
+  height: 32px;
+  background-color: #181a20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tool-settings .tools {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tool-settings .transforms {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 192px;
+  border-left: 4px solid #101012;
+  align-self: stretch;
+}
+.tool-settings .btn .isvg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tool-settings .btn svg {
+  width: 24px;
+  height: 24px;
+}
+.tool-settings .btn.active {
+  background-color: #72ca7e;
+}
+.tool-settings .btn.active .isvg {
+  fill: #111;
+  stroke: #111;
+}
+.tool-settings .num-picker {
+  margin: 0;
+}
+.tool-settings .num-picker .title {
+  align-self: center;
+  font-weight: normal;
+  width: initial;
+  font-size: 14px;
+}
+.tool-settings .num-picker .controls {
+  width: initial;
+}
+.tool-settings .num-picker input {
+  font-size: 14px;
+  padding: 2px;
+  width: 30px;
+  align-self: center;
+  border: 1px solid #72ca7e;
+}
+.tool-settings .num-picker .btn {
+  width: 32px;
+  height: 32px;
+  margin: 0;
+}
+.tool-settings .num-picker .btn .isvg, .tool-settings .num-picker .btn svg {
+  width: 20px;
+}/*# sourceMappingURL=ToolSettings.css.map */

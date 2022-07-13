@@ -1,0 +1,44 @@
+.tilemap-selector {
+  top: 0;
+  right: 16px;
+  position: absolute;
+  z-index: 20;
+  background-color: #181a20;
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+.tilemap-selector .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 8px;
+}
+.tilemap-selector .content.closed {
+  display: none;
+}
+.tilemap-selector .text-input input {
+  margin-left: 0;
+}
+.tilemap-selector .text-input .controls {
+  width: 100%;
+}
+.tilemap-selector .std-btn {
+  margin-top: 8px;
+}
+.tilemap-selector .toggle-header svg {
+  transform: scaleY(-1);
+}
+
+.tilemap-selector.open {
+  min-width: 300px;
+}
+.tilemap-selector.open .toggle-header svg {
+  transform: scaleY(1);
+}
+
+.tilemap-selector.closed {
+  min-width: 300px;
+  min-height: 32px;
+  overflow: hidden;
+}/*# sourceMappingURL=TilemapSelector.css.map */

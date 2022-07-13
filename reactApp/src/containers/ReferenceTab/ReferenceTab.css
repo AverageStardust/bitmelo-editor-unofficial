@@ -1,0 +1,78 @@
+.reference-tab {
+  background-color: #181a20;
+  flex-grow: 0;
+  position: relative;
+  width: 548px;
+  z-index: 5000;
+  display: flex;
+  flex-direction: row;
+}
+.reference-tab .reference-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.reference-tab .reference-main img {
+  max-width: 512px;
+}
+.reference-tab .toggle-btn {
+  width: 20px;
+  background-color: #2b303b;
+}
+.reference-tab .toggle-btn .isvg svg {
+  width: 12px;
+}
+.reference-tab .toggle-btn:hover {
+  background-color: #62b46d;
+}
+.reference-tab .toggle-btn:hover svg {
+  fill: #111;
+  stroke: #111;
+}
+.reference-tab .top-bar {
+  background-color: #c7c7c7;
+}
+.reference-tab .top-bar .btn svg {
+  fill: #111;
+  stroke: #111;
+}
+.reference-tab .top-bar .btn:hover {
+  background-color: #b1b1b1;
+}
+
+.reference-tab.floating {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: -8px 0 2px -2px rgba(0, 0, 0, 0.5);
+}
+
+.reference-tab.floating.closed {
+  box-shadow: none;
+}
+
+.reference-tab.closed {
+  width: 20px;
+  border-left: none;
+}
+.reference-tab.closed .reference-main {
+  width: 0;
+}
+.reference-tab.closed .toggle-btn .isvg svg {
+  transform: scaleX(-1);
+}
+
+.ref-spacer {
+  width: 20px;
+}
+
+@media screen and ( max-width: 1700px ) {
+  .reference-tab {
+    width: 420px;
+  }
+  .reference-tab .reference-main img {
+    max-width: 384px;
+  }
+}/*# sourceMappingURL=ReferenceTab.css.map */

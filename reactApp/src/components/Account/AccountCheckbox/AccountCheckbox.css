@@ -1,0 +1,14 @@
+.account-checkbox {
+  font-weight: bold;
+  font-size: 14px;
+}
+.account-checkbox label {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.account-checkbox .label-content {
+  display: inline-block;
+  margin-left: 8px;
+}/*# sourceMappingURL=AccountCheckbox.css.map */

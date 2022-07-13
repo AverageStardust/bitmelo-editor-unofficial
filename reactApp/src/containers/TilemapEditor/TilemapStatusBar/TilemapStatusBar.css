@@ -1,0 +1,21 @@
+.tilemap-status-bar {
+  height: 28px;
+  background-color: #101012;
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 12px;
+  font-family: monospace;
+  color: #ddd;
+}
+.tilemap-status-bar .left {
+  margin-left: 8px;
+}
+.tilemap-status-bar .center {
+  flex-grow: 1;
+  text-align: center;
+}
+.tilemap-status-bar .right {
+  margin-right: 8px;
+}/*# sourceMappingURL=TilemapStatusBar.css.map */

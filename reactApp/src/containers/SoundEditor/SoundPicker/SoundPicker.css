@@ -1,0 +1,27 @@
+.sound-picker {
+  width: 640px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.sound-picker .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.sound-picker .num-picker {
+  width: 50%;
+}
+.sound-picker .text-input {
+  width: 50%;
+}
+.sound-picker .text-input .title {
+  width: initial;
+}
+.sound-picker .text-input .controls {
+  width: initial;
+}
+.sound-picker .std-btn {
+  margin: 16px 36px 0 36px;
+}/*# sourceMappingURL=SoundPicker.css.map */

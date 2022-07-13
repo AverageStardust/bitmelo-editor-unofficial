@@ -1,0 +1,47 @@
+.main-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -moz-user-select: -moz-none;
+}
+.main-container .main-top-bar .create-account-btn {
+  background-color: #fffd84;
+  margin: 4px 0;
+  padding: 0 8px;
+  align-self: stretch;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid #000000;
+}
+.main-container .main-top-bar .log-in-btn {
+  margin-left: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.main-container .main-top-bar .explore-btn {
+  padding: 2px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #72ca7e;
+  border-radius: 4px;
+}
+.main-container .main-top-bar .explore-btn:hover {
+  background-color: #82df8f;
+}
+.main-container .main-top-bar .explore-btn .isvg {
+  width: 32px;
+  height: 32px;
+}
+.main-container .main-top-bar .explore-btn .isvg svg {
+  width: 32px;
+  height: 32px;
+  fill: #111;
+  stroke: #111;
+}/*# sourceMappingURL=MainContainer.css.map */

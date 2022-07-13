@@ -1,0 +1,26 @@
+.account-text-input {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.account-text-input .top {
+  font-weight: bold;
+  font-size: 14px;
+}
+.account-text-input .bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.account-text-input .bottom input {
+  border: 2px solid #aaa;
+  background-color: #ddd;
+  color: #111;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 4px;
+  outline: none;
+}
+.account-text-input .bottom input:focus {
+  border: 2px solid #62b46d;
+}/*# sourceMappingURL=AccountTextInput.css.map */

@@ -1,0 +1,18 @@
+.api-notes {
+  margin: 10px;
+  margin-bottom: 64px;
+}
+.api-notes .description {
+  margin-bottom: 16px;
+}
+.api-notes .notes-item {
+  padding: 8px 4px;
+  display: flex;
+  align-items: center;
+}
+.api-notes .notes-item .value {
+  margin-left: 8px;
+}
+.api-notes .notes-item:nth-child(odd) {
+  background-color: #101012;
+}/*# sourceMappingURL=NotesAPI.css.map */

@@ -1,0 +1,34 @@
+.isvg {
+  fill: #ddd;
+  stroke: #ddd;
+  width: 32px;
+  height: 32px;
+}
+.isvg svg {
+  width: 32px;
+  height: 32px;
+}
+.isvg g {
+  fill: inherit;
+  stroke: inherit;
+}
+
+.no-fill {
+  fill: none !important;
+}
+.no-fill svg {
+  fill: none !important;
+}
+.no-fill g {
+  fill: none !important;
+}
+
+.no-stroke {
+  stroke: none !important;
+}
+.no-stroke svg {
+  stroke: none !important;
+}
+.no-stroke g {
+  stroke: none !important;
+}/*# sourceMappingURL=Icon.css.map */

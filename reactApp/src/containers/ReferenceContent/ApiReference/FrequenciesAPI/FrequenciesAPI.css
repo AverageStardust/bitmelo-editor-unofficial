@@ -1,0 +1,18 @@
+.api-frequencies {
+  margin: 10px;
+  margin-bottom: 64px;
+}
+.api-frequencies .description {
+  margin-bottom: 16px;
+}
+.api-frequencies .freq-item {
+  padding: 8px 4px;
+  display: flex;
+  align-items: center;
+}
+.api-frequencies .freq-item .freq {
+  margin-left: 8px;
+}
+.api-frequencies .freq-item:nth-child(odd) {
+  background-color: #101012;
+}/*# sourceMappingURL=FrequenciesAPI.css.map */

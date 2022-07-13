@@ -1,0 +1,80 @@
+@import '../../style/colors.scss';
+
+.tool-settings {
+  width: 640px;
+  height: 32px;
+  background-color: $background-light-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .tools {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .transforms {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 192px;
+    border-left: 4px solid $background-color;
+    align-self: stretch;
+  }
+
+  .btn {
+    .isvg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .btn.active {
+    background-color: $primary-color;
+
+    .isvg {
+      fill: $on-primary-color;
+      stroke: $on-primary-color;
+    }
+  }
+
+  .num-picker {
+    margin: 0;
+
+    .title {
+      align-self: center;
+      font-weight: normal;
+      width: initial;
+      font-size: 14px;
+    }
+
+    .controls {
+      width: initial;
+    }
+
+    input {
+      font-size: 14px;
+      padding: 2px;
+      width: 30px;
+      align-self: center;
+      border: 1px solid $primary-color;
+    }
+
+    .btn {
+      width: 32px;
+      height: 32px;
+      margin: 0;
+
+      .isvg, svg {
+        width: 20px;
+      }
+    }
+  }
+}

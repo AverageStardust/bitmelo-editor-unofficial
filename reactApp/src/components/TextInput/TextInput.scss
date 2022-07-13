@@ -1,0 +1,67 @@
+
+@import '../../style/colors.scss';
+
+.text-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+
+  input {
+    border: 2px solid $primary-color;
+    background-color: $background-color;
+    color: $on-background-color;
+    font-size: 18px;
+    padding: 4px;
+    width: 200px;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+
+  input:focus {
+    outline: none;
+    background-color: $primary-color;
+    border-radius: 4px;
+    caret-color: $on-primary-color;
+    color: $on-primary-color;
+  }
+
+  .title {
+    font-weight: bold;
+    width: 50%;
+    text-align: right;
+  }
+
+  .controls {
+    width: 50%;
+  }
+
+  &.vertical {
+    flex-direction: column;
+    align-items: stretch;
+
+    .controls {
+      width: initial;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    input {
+      width: initial;
+      margin: 0;
+    }
+
+    .title {
+      width: initial;
+      align-self: flex-start;
+    }
+  }
+
+  .length-count {
+    font-size: 12px;
+    align-self: flex-end;
+    margin-top: 4px;
+  }
+}

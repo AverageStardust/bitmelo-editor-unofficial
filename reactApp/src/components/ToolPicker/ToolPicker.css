@@ -1,0 +1,53 @@
+.tool-picker {
+  width: 640px;
+  height: 32px;
+  background-color: #000000;
+  display: flex;
+  align-items: stretch;
+}
+.tool-picker .button-tabs {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+.tool-picker .button-tabs .isvg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tool-picker .button-tabs svg {
+  width: 24px;
+  height: 24px;
+}
+.tool-picker .button-tabs .active {
+  background-color: #72ca7e;
+}
+.tool-picker .button-tabs .active .isvg {
+  fill: #111;
+  stroke: #111;
+}
+.tool-picker .custom-tools {
+  display: flex;
+  align-items: stretch;
+}
+.tool-picker .custom-tools .isvg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+.tool-picker .custom-tools .btn {
+  border: 2px solid transparent;
+}
+.tool-picker .custom-tools .btn svg {
+  width: 24px;
+  height: 24px;
+}
+.tool-picker .custom-tools .active {
+  border: 2px solid #72ca7e;
+}
+.tool-picker .custom-tools .active .isvg {
+  fill: #72ca7e;
+  stroke: #72ca7e;
+}/*# sourceMappingURL=ToolPicker.css.map */

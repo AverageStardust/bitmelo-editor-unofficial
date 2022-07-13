@@ -1,0 +1,57 @@
+.num-picker {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  margin-top: 8px;
+}
+.num-picker .controls {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-start;
+  width: 50%;
+}
+.num-picker input {
+  border: 2px solid #72ca7e;
+  background-color: #101012;
+  color: #ddd;
+  font-size: 18px;
+  text-align: center;
+  padding: 4px;
+  width: 40px;
+  border-radius: 4px;
+  caret-color: transparent;
+}
+.num-picker input:focus {
+  outline: none;
+}
+.num-picker .is-editing {
+  background-color: #72ca7e;
+  border-radius: 4px;
+  caret-color: #111;
+  color: #111;
+}
+.num-picker .title {
+  font-weight: bold;
+  width: 50%;
+  text-align: right;
+}
+.num-picker .btn {
+  align-self: center;
+  margin: 0 8px;
+}
+.num-picker .btn .isvg {
+  fill: #72ca7e;
+  stroke: #72ca7e;
+}
+.num-picker .btn .isvg:hover {
+  fill: #82df8f;
+  stroke: #82df8f;
+}
+.num-picker .btn .isvg, .num-picker .btn svg {
+  width: 24px;
+}
+.num-picker .lower svg {
+  transform: scaleX(-1);
+}/*# sourceMappingURL=NumberPicker.css.map */

@@ -1,0 +1,33 @@
+.loop-controls {
+  background-color: #222429;
+  padding: 8px 0;
+  margin-top: 8px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.loop-controls .checkbox {
+  margin: 0;
+}
+.loop-controls .start-end {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.loop-controls .start-end .num-picker {
+  margin: 0;
+  width: 50%;
+  justify-content: center;
+}
+.loop-controls .start-end .num-picker .title {
+  width: initial;
+}
+.loop-controls .start-end .num-picker .controls {
+  width: initial;
+}
+.loop-controls .std-btn {
+  margin-top: 8px;
+  align-self: center;
+}/*# sourceMappingURL=LoopControls.css.map */

@@ -1,0 +1,23 @@
+.drop-down-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #2c2f35;
+  color: #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 1px solid black;
+  white-space: nowrap;
+  z-index: 1000;
+}
+.drop-down-menu .drop-down-item {
+  padding: 8px 16px;
+  border-top: 1px solid black;
+}
+.drop-down-menu .drop-down-item:first-child {
+  border-top: none;
+}
+.drop-down-menu .drop-down-item:hover {
+  background-color: #3d4149;
+}/*# sourceMappingURL=DropDownMenu.css.map */

@@ -24,6 +24,12 @@ Make Bitmelo games in VS code. Use the art, sound and tilemap editors from Bitme
 	>Open Bitmelo
 	Reopen a local Bitmelo project in the editor
 
+	>Lock Bitmelo
+	Lock your editor to prevent changes and allow others to edit on Live Share
+
+	>Unlock Bitmelo
+	Unlock your editor to allow changes
+
 ---
 
 ## How are your projects saved?
@@ -40,13 +46,18 @@ Make Bitmelo games in VS code. Use the art, sound and tilemap editors from Bitme
 
 	Bitmelo publish tab is removed: I don't want to deal with accounts, you can still export when you are done
 
-	Live share only works for code: Only the person that hosts live share can edit art/sound/tilemaps
+	Live share on art/sound/tilemaps: Only the person can edit art/sound/tilemaps at a time, everyone else must lock or close their editor
 
 	This may be a buggy mess I wrote in 3 days: Backup your "bitmeloExport.json" file often!
 
 ---
 
 ## Release Notes
+
+## 1.2.0
+
+- Added editor locking
+- Fixed bugs
 
 ## 1.1.0
 

@@ -15,7 +15,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"*",
+		"onStartupFinished",
 		"onCommand:bitmelo-editor-unofficial.init",
 		"onCommand:bitmelo-editor-unofficial.open"
 	],

@@ -178,7 +178,7 @@ async function updatePanel(panel) {
 			if (lockChanges) {
 				panel.setProject(projectOnDisk);
 			} else {
-				if (project !== projectOnDisk) {
+				if (project !== projectOnDisk && await checkUnlockSafe()) {
 					await saveProject(project);
 					allowUpdateAfter = Date.now() + 1000; // de-bounce
 				}

@@ -54,6 +54,10 @@ Make Bitmelo games in VS code. Use the art, sound and tilemap editors from Bitme
 
 ## Release Notes
 
+## 1.3.0
+- Added systems to allow only one unlocked editor at a time
+- Fixed bubs
+
 ## 1.2.0
 
 - Added editor locking

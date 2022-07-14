@@ -6,6 +6,7 @@ let context = null;
  * @param {vscode.ExtensionContext} context
  */
 
+const unlockName = "bitmeloUnlock_" + Array(16).fill(null).map(() => Math.floor(Math.random() * 16).toString(16)).join("");
 let lockChanges = false;
 
 function activate(_context) {
@@ -157,6 +158,16 @@ async function updatePanel(panel) {
 	if (Date.now() < allowUpdateAfter) return;
 
 	try {
+		const workspaceUri = getWorkspaceUri();
+		const unlockPath = vscode.Uri.joinPath(workspaceUri, unlockName);
+		if (lockChanges) {
+			vscode.workspace.fs.delete(unlockPath);
+		} else {
+			vscode.workspace.fs.writeFile(unlockPath, Buffer.from(""));
+		}
+	} catch { }
+
+	try {
 		const result = await projectOnDiskChanged();
 		if (result.changed) {
 			if (lockChanges) {
@@ -218,6 +229,36 @@ async function deleteCodeFiles() {
 	}
 
 	return Promise.all(deletedFiles);
+}
+
+
+async function checkUnlockSafe() {
+	const workspaceUri = getWorkspaceUri();
+	const files = await vscode.workspace.fs.readDirectory(workspaceUri);
+	const deletedFiles = [];
+
+	for (const [name, type] of files) {
+		if (type !== vscode.FileType.File) continue;
+		if (!name.startsWith("bitmeloUnlock_")) continue;
+		if (name === unlockName) continue;
+
+		const unlockUri = vscode.Uri.joinPath(workspaceUri, name);
+		deletedFiles.push(vscode.workspace.fs.delete(unlockUri));
+	}
+
+	if (deletedFiles.length > 0) {
+		lockChanges = true;
+		vscode.window
+			.showInformationMessage("Another bitmelo editor is unlock so you've been locked.\n Try to unlock?", "Yes", "No")
+			.then(async answer => {
+				if (answer !== "Yes") return;
+				lockChanges = false;
+			});
+		await Promise.all(deletedFiles);
+		return false;
+	}
+
+	return true;
 }
 
 async function importProjectCodeFiles() {

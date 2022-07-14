@@ -113,9 +113,7 @@ function initProject() {
 				const workspaceUri = getWorkspaceUri();
 				vscode.workspace.fs.delete(vscode.Uri.joinPath(workspaceUri, "bitmeloExport.json"));
 				deleteCodeFiles();
-			} catch {
-
-			}
+			} catch { }
 			const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Beside, updatePanel);
 			setLockOnReload(panel);
 			startWatcher();
@@ -158,26 +156,28 @@ let allowUpdateAfter = Date.now();
 async function updatePanel(panel) {
 	if (Date.now() < allowUpdateAfter) return;
 
-	try {
-		const result = await projectOnDiskChanged();
-		if (result.changed) {
+	//try {
+	const result = await projectOnDiskChanged();
+	if (result.changed) {
+		if (lockChanges) {
 			panel.setProject(result.foundProject);
+		}
+	} else {
+		const project = panel.getProject();
+		if (lockChanges) {
+			if (project !== projectOnDisk) {
+				panel.setProject(projectOnDisk);
+			}
 		} else {
-			const project = panel.getProject();
-			if (lockChanges) {
-				if (project !== projectOnDisk) {
-					panel.setProject(projectOnDisk);
-				}
-			} else {
-				if (project !== projectOnDisk) {
-					saveProject(project);
-					allowUpdateAfter = Date.now() + 1000; // de-bounce
-				}
+			if (project !== projectOnDisk) {
+				await saveProject(project);
+				allowUpdateAfter = Date.now() + 1000; // de-bounce
 			}
 		}
-	} catch {
-		return;
 	}
+	//} catch {
+	//  return;
+	//}
 }
 
 let projectOnDisk = "";
@@ -232,7 +232,7 @@ async function importProjectCodeFiles() {
 	for (const [name, type] of files) {
 		if (type !== vscode.FileType.File) continue;
 		if (!name.endsWith(".js")) continue;
-		const codeFileUri = vscode.Uri.joinPath(codeFolderUri, name);
+		const codeFileUri = vscode.Uri.joinPath(codeFolderUri, name); f
 		readFiles.push(vscode.workspace.fs.readFile(codeFileUri).then((data) => {
 			const parts = name.substring(0, name.length - 3).split("_");
 			const index = Number(parts.shift());
@@ -274,11 +274,16 @@ function loadProject() {
 		.then((data) => data.toString());
 }
 
-function saveProject(project) {
+async function saveProject(project) {
 	let uri;
 	uri = vscode.Uri.joinPath(getWorkspaceUri(), "bitmeloExport.json");
-	return vscode.workspace.fs.writeFile(uri,
-		Buffer.from(project)).then(() => {
+
+	try {
+		const workspaceUri = getWorkspaceUri();
+		await vscode.workspace.fs.delete(vscode.Uri.joinPath(workspaceUri, "bitmeloExport.json"));
+	} catch { }
+	return vscode.workspace.fs.writeFile(uri, Buffer.from(project))
+		.then(() => {
 			projectOnDisk = project;
 		});
 }

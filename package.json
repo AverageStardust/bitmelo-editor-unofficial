@@ -4,6 +4,7 @@
 	"description": "Work on Bitmelo art, sound and tilemaps in VS code.",
 	"icon": "images/icon.png",
 	"version": "1.2.0",
+	"publisher": "WDSTEVE",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/WDSTEVE/bitmelo-editor-unofficial.git"

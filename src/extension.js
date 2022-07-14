@@ -156,28 +156,26 @@ let allowUpdateAfter = Date.now();
 async function updatePanel(panel) {
 	if (Date.now() < allowUpdateAfter) return;
 
-	//try {
-	const result = await projectOnDiskChanged();
-	if (result.changed) {
-		if (lockChanges) {
-			panel.setProject(result.foundProject);
-		}
-	} else {
-		const project = panel.getProject();
-		if (lockChanges) {
-			if (project !== projectOnDisk) {
-				panel.setProject(projectOnDisk);
+	try {
+		const result = await projectOnDiskChanged();
+		if (result.changed) {
+			if (lockChanges) {
+				panel.setProject(result.foundProject);
 			}
 		} else {
-			if (project !== projectOnDisk) {
-				await saveProject(project);
-				allowUpdateAfter = Date.now() + 1000; // de-bounce
+			const project = panel.getProject();
+			if (lockChanges) {
+				panel.setProject(projectOnDisk);
+			} else {
+				if (project !== projectOnDisk) {
+					await saveProject(project);
+					allowUpdateAfter = Date.now() + 1000; // de-bounce
+				}
 			}
 		}
+	} catch {
+		return;
 	}
-	//} catch {
-	//  return;
-	//}
 }
 
 let projectOnDisk = "";

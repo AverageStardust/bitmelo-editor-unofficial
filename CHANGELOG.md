@@ -1,5 +1,9 @@
 # Change Log of bitmelo-editor-unofficial
 
+## 1.4.0
+- Added auto backup system
+- Fixed bugs
+
 ## 1.3.0
 - Added system to allow only one unlocked editor at a time
 - Fixed bugs

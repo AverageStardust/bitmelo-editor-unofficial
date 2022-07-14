@@ -41,22 +41,26 @@ Make Bitmelo games in VS code. Use the art, sound and tilemap editors from Bitme
 
 ---
 
-## Limitations
+## Any limitations?
 	Bitmelo code tab is removed: You are in VS code for a reason
 
 	Bitmelo publish tab is removed: I don't want to deal with accounts, you can still export when you are done
+	
+	This may be a buggy mess I wrote in 3 days: Good thing there are automatic backups
 
-	Live share on art/sound/tilemaps: Only the person can edit art/sound/tilemaps at a time, everyone else must lock or close their editor
-
-	This may be a buggy mess I wrote in 3 days: Backup your "bitmeloExport.json" file often!
+	Live share on art/sound/tilemaps: Only the person can edit art/sound/tilemaps at a time
 
 ---
 
 ## Release Notes
 
+## 1.4.0
+- Added auto backup system
+- Fixed bugs
+
 ## 1.3.0
-- Added systems to allow only one unlocked editor at a time
-- Fixed bubs
+- Added system to allow only one unlocked editor at a time
+- Fixed bugs
 
 ## 1.2.0
 

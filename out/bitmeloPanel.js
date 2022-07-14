@@ -29,7 +29,7 @@ function resetBitmeloPanel() {
 	if (bitmeloPanel !== null && bitmeloPanel.panel !== null) {
 		bitmeloPanel.panel.dispose();
 	}
-	panel = null;
+	bitmeloPanel = null;
 }
 
 class BitmeloPanel {
@@ -75,6 +75,7 @@ class BitmeloPanel {
 		this.panel.webview.html = await this.indexHTML;
 		this.panel.onDidDispose(() => {
 			this.panel = null;
+			this.unload();
 		});
 		this.panel.onDidChangeViewState(() => {
 			if (!this.panel.visible) {

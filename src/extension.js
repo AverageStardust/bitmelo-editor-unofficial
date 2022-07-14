@@ -7,7 +7,7 @@ let context = null;
  */
 
 const unlockName = "bitmeloUnlock_" + Array(16).fill(null).map(() => Math.floor(Math.random() * 16).toString(16)).join("");
-let lockChanges = false;
+let lockChanges = true;
 
 function activate(_context) {
 	context = _context;
@@ -26,9 +26,33 @@ function activate(_context) {
 	);
 
 	startWatcher();
+
+	setInterval(updateLockState, 500);
 }
 
-function deactivate() { }
+async function deactivate() {
+	lockChanges = true;
+	await updateLockState();
+}
+
+async function updateLockState() {
+	if (!lockChanges) {
+		await checkUnlockSafe();
+	}
+
+	let workspaceUri;
+	try {
+		workspaceUri = getWorkspaceUri();
+		const unlockPath = vscode.Uri.joinPath(workspaceUri, unlockName);
+		if (lockChanges) {
+			await vscode.workspace.fs.delete(unlockPath);
+		} else {
+			await vscode.workspace.fs.writeFile(unlockPath, Buffer.from(""));
+		}
+	} catch {
+		return;
+	}
+}
 
 
 
@@ -116,6 +140,7 @@ function initProject() {
 				deleteCodeFiles();
 			} catch { }
 			const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Beside, updatePanel);
+			lockChanges = false;
 			setLockOnReload(panel);
 			startWatcher();
 
@@ -145,6 +170,7 @@ async function openProject() {
 		return;
 	}
 	const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Active, updatePanel);
+	lockChanges = false;
 	setLockOnReload(panel);
 	startWatcher();
 
@@ -158,16 +184,6 @@ async function updatePanel(panel) {
 	if (Date.now() < allowUpdateAfter) return;
 
 	try {
-		const workspaceUri = getWorkspaceUri();
-		const unlockPath = vscode.Uri.joinPath(workspaceUri, unlockName);
-		if (lockChanges) {
-			vscode.workspace.fs.delete(unlockPath);
-		} else {
-			vscode.workspace.fs.writeFile(unlockPath, Buffer.from(""));
-		}
-	} catch { }
-
-	try {
 		const result = await projectOnDiskChanged();
 		if (result.changed) {
 			if (lockChanges) {
@@ -178,7 +194,7 @@ async function updatePanel(panel) {
 			if (lockChanges) {
 				panel.setProject(projectOnDisk);
 			} else {
-				if (project !== projectOnDisk && await checkUnlockSafe()) {
+				if (project !== projectOnDisk) {
 					await saveProject(project);
 					allowUpdateAfter = Date.now() + 1000; // de-bounce
 				}
@@ -249,7 +265,7 @@ async function checkUnlockSafe() {
 	if (deletedFiles.length > 0) {
 		lockChanges = true;
 		vscode.window
-			.showInformationMessage("Another bitmelo editor is unlock so you've been locked.\n Try to unlock?", "Yes", "No")
+			.showInformationMessage("Another bitmelo editor is unlocked so you were locked, unlock?", "Yes", "No")
 			.then(async answer => {
 				if (answer !== "Yes") return;
 				lockChanges = false;
@@ -271,7 +287,7 @@ async function importProjectCodeFiles() {
 	for (const [name, type] of files) {
 		if (type !== vscode.FileType.File) continue;
 		if (!name.endsWith(".js")) continue;
-		const codeFileUri = vscode.Uri.joinPath(codeFolderUri, name); f
+		const codeFileUri = vscode.Uri.joinPath(codeFolderUri, name);
 		readFiles.push(vscode.workspace.fs.readFile(codeFileUri).then((data) => {
 			const parts = name.substring(0, name.length - 3).split("_");
 			const index = Number(parts.shift());
@@ -321,10 +337,14 @@ async function saveProject(project) {
 		const workspaceUri = getWorkspaceUri();
 		await vscode.workspace.fs.delete(vscode.Uri.joinPath(workspaceUri, "bitmeloExport.json"));
 	} catch { }
-	return vscode.workspace.fs.writeFile(uri, Buffer.from(project))
-		.then(() => {
-			projectOnDisk = project;
-		});
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			vscode.workspace.fs.writeFile(uri, Buffer.from(project)).then(() => {
+				projectOnDisk = project;
+				resolve();
+			});
+		}, 50);
+	});
 }
 
 function getWorkspaceUri() {

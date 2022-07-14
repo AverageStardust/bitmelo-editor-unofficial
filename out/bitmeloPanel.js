@@ -25,6 +25,13 @@ function ifBitmeloPanel(callback) {
 	}
 }
 
+function resetBitmeloPanel() {
+	if (bitmeloPanel !== null && bitmeloPanel.panel !== null) {
+		bitmeloPanel.panel.dispose();
+	}
+	panel = null;
+}
+
 class BitmeloPanel {
 	constructor(extensionUri, context, position, updater) {
 		this.panel = null;
@@ -36,6 +43,7 @@ class BitmeloPanel {
 		this.isActive = false;
 		this.allowMessagesAfter = Date.now();
 		this.onReload = [];
+		this.onUnload = [];
 		this.ensurePanel(position);
 	}
 
@@ -69,7 +77,10 @@ class BitmeloPanel {
 			this.panel = null;
 		});
 		this.panel.onDidChangeViewState(() => {
-			if (!this.panel.visible) this.isActive = false;
+			if (!this.panel.visible) {
+				this.isActive = false;
+				this.unload();
+			}
 		});
 		this.panel.webview.onDidReceiveMessage(
 			async (project) => {
@@ -99,6 +110,12 @@ class BitmeloPanel {
 			this.onReload.pop()(this);
 		}
 	}
+	
+	unload() {
+		while (this.onUnload.length > 0) {
+			this.onUnload.pop()(this);
+		}
+	}
 
 	getProject() {
 		return this.project;
@@ -112,5 +129,6 @@ class BitmeloPanel {
 module.exports = {
 	getBitmeloPanel,
 	hasBitmeloPanel,
+	resetBitmeloPanel,
 	ifBitmeloPanel
 }

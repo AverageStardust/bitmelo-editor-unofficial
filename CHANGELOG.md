@@ -1,5 +1,8 @@
 # Change Log of bitmelo-editor-unofficial
 
+## 1.4.1
+- Fixed bugs
+
 ## 1.4.0
 - Added auto backup system
 - Fixed bugs

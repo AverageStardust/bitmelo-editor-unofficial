@@ -30,14 +30,19 @@ Make Bitmelo games in VS code. Use the art, sound and tilemap editors from Bitme
 	>Unlock Bitmelo
 	Unlock your editor to allow changes
 
+	>Export Bitmelo
+	Export the code from a bitmeloExport.json file back out into your code directory
+
 ---
 
 ## How are your projects saved?
 	.
-	├──bitmeloExport.json      <-- All your project data, synced live
-	└──code                    <-- Human readable code, synced with project when saved
-		└──0_MyScript.js       <-- First script, named "MyScript"
-		└──1_MyOtherScript.js  <-- Second script, named "MyOtherScript"
+	├──bitmeloExport.json        <-- All your project data, synced live
+	├──backups                   <-- Backups of your project taken every 2 minutes
+	│   └──bitmeloExport_1657.js <-- A backup, it's an old copy of "bitmeloExport.json"
+	└──code                      <-- Human readable code, synced with project when saved
+		└──0_MyScript.js         <-- First script, named "MyScript"
+		└──1_MyOtherScript.js    <-- Second script, named "MyOtherScript"
 
 ---
 
@@ -53,6 +58,9 @@ Make Bitmelo games in VS code. Use the art, sound and tilemap editors from Bitme
 ---
 
 ## Release Notes
+
+## 1.4.1
+- Fixed bugs
 
 ## 1.4.0
 - Added auto backup system

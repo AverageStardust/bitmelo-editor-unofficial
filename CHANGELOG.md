@@ -1,8 +1,8 @@
 # Change Log of bitmelo-editor-unofficial
 
 ## 1.3.0
-- Added systems to allow only one unlocked editor at a time
-- Fixed bubs
+- Added system to allow only one unlocked editor at a time
+- Fixed bugs
 
 ## 1.2.0
 

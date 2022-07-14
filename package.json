@@ -20,7 +20,8 @@
 		"onCommand:bitmelo-editor-unofficial.init",
 		"onCommand:bitmelo-editor-unofficial.open",
 		"onCommand:bitmelo-editor-unofficial.unlock",
-		"onCommand:bitmelo-editor-unofficial.lock"
+		"onCommand:bitmelo-editor-unofficial.lock",
+		"onCommand:bitmelo-editor-unofficial.export"
 	],
 	"main": "./out/extension",
 	"contributes": {
@@ -43,6 +44,11 @@
 			{
 				"command": "bitmelo-editor-unofficial.lock",
 				"title": "Lock Bitmelo Editor",
+				"category": "Bitmelo"
+			},
+			{
+				"command": "bitmelo-editor-unofficial.export",
+				"title": "Export Bitmelo Editor to code files",
 				"category": "Bitmelo"
 			}
 		]

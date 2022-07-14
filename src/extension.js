@@ -8,6 +8,7 @@ let context = null;
 
 const unlockName = "bitmeloUnlock_" + Array(16).fill(null).map(() => Math.floor(Math.random() * 16).toString(16)).join("");
 let lockChanges = true;
+let lastBackup = 0;
 
 function activate(_context) {
 	context = _context;
@@ -23,6 +24,17 @@ function activate(_context) {
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand("bitmelo-editor-unofficial.unlock", () => lockChanges = false)
+	);
+	context.subscriptions.push(
+		vscode.commands.registerCommand("bitmelo-editor-unofficial.export", async () => {
+			try {
+				const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Beside, updatePanel);
+				await exportProjectCodeFiles(panel.getProject());
+			} catch {
+				vscode.window
+					.showErrorMessage("Could not export code files.");
+			}
+		})
 	);
 
 	startWatcher();
@@ -118,7 +130,7 @@ async function onWatcherEvent(retry = true) {
 			setTimeout(() => onWatcherEvent(false), 100);
 		} else {
 			vscode.window
-				.showErrorMessage("Could not sync code.")
+				.showErrorMessage("Could not sync code.");
 		}
 		return;
 	}
@@ -136,7 +148,7 @@ function initProject() {
 			resetBitmeloPanel();
 			try {
 				const workspaceUri = getWorkspaceUri();
-				vscode.workspace.fs.delete(vscode.Uri.joinPath(workspaceUri, "bitmeloExport.json"));
+				await vscode.workspace.fs.delete(vscode.Uri.joinPath(workspaceUri, "bitmeloExport.json"));
 				deleteCodeFiles();
 			} catch { }
 			const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Beside, updatePanel);
@@ -324,25 +336,35 @@ async function importProjectCodeFiles() {
 }
 
 function loadProject() {
-	const uri = vscode.Uri.joinPath(getWorkspaceUri(), "bitmeloExport.json");
-	return vscode.workspace.fs.readFile(uri)
+	const projectUri = vscode.Uri.joinPath(getWorkspaceUri(), "bitmeloExport.json");
+	return vscode.workspace.fs.readFile(projectUri)
 		.then((data) => data.toString());
 }
 
 async function saveProject(project) {
-	let uri;
-	uri = vscode.Uri.joinPath(getWorkspaceUri(), "bitmeloExport.json");
+	const workspaceUri = getWorkspaceUri();
+
+	const projectUri = vscode.Uri.joinPath(workspaceUri, "bitmeloExport.json");
 
 	try {
-		const workspaceUri = getWorkspaceUri();
-		await vscode.workspace.fs.delete(vscode.Uri.joinPath(workspaceUri, "bitmeloExport.json"));
+		await vscode.workspace.fs.delete(projectUri);
 	} catch { }
+
 	return new Promise((resolve) => {
-		setTimeout(() => {
-			vscode.workspace.fs.writeFile(uri, Buffer.from(project)).then(() => {
+		setTimeout(async () => {
+			vscode.workspace.fs.writeFile(projectUri, Buffer.from(project)).then(() => {
 				projectOnDisk = project;
 				resolve();
 			});
+			if (Date.now() - lastBackup > 120000) {
+				const backupFolderUri = vscode.Uri.joinPath(workspaceUri, "backups");
+				await vscode.workspace.fs.createDirectory(backupFolderUri);
+				setTimeout(() => {
+					const backupFileUri = vscode.Uri.joinPath(backupFolderUri, `bitmeloExport_${Date.now()}.json`);
+					vscode.workspace.fs.writeFile(backupFileUri, Buffer.from(project));
+				}, 50);
+				lastBackup = Date.now();
+			}
 		}, 50);
 	});
 }

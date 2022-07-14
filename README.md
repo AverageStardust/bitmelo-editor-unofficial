@@ -40,7 +40,7 @@ Make Bitmelo games in VS code. Use the art, sound and tilemap editors from Bitme
 
 	Bitmelo publish tab is removed: I don't want to deal with accounts, you can still export when you are done
 
-	Live share only works with the VS code text editor: Using live share with Bitmelo editors will cause unintended behaviour. If only one person changes art/sound/tilemaps at a time everything is fine.
+	Live share only works for code: Only the person that hosts live share can edit art/sound/tilemaps
 
 	This may be a buggy mess I wrote in 3 days: Backup your "bitmeloExport.json" file often!
 

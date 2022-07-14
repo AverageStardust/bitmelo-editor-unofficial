@@ -62,21 +62,21 @@ let watcherStarted = false;
 function startWatcher() {
 	if (watcherStarted) return;
 
-	let codeUri;
+	let watcher;
+
 	try {
-		codeUri = vscode.Uri.joinPath(getWorkspaceUri(), "code");
+		const codeUri = vscode.Uri.joinPath(getWorkspaceUri(), "code");
+
+		watcher = vscode.workspace.createFileSystemWatcher(
+			new vscode.RelativePattern(
+				codeUri,
+				"**/*.js"
+			)
+		);
 	} catch {
-		vscode.window
-			.showErrorMessage("Could not start auto-sync.")
+		return;
 	}
 
-	vscode.workspace.fs.createDirectory(codeUri);
-	const watcher = vscode.workspace.createFileSystemWatcher(
-		new vscode.RelativePattern(
-			codeUri,
-			"**/*.js"
-		)
-	);
 	watcher.onDidChange(onWatcherEvent);
 	watcher.onDidCreate(onWatcherEvent);
 	watcher.onDidDelete(onWatcherEvent);
@@ -171,6 +171,7 @@ async function updatePanel(panel) {
 			} else {
 				if (project !== projectOnDisk) {
 					saveProject(project);
+					allowUpdateAfter = Date.now() + 1000; // de-bounce
 				}
 			}
 		}

@@ -3,7 +3,7 @@
 	"displayName": "Bitmelo Editor [Unofficial]",
 	"description": "Work on Bitmelo art, sound and tilemaps in VS code.",
 	"icon": "images/icon.png",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/WDSTEVE/bitmelo-editor-unofficial.git"
@@ -15,9 +15,9 @@
 		"Other"
 	],
 	"activationEvents": [
+		"*",
 		"onCommand:bitmelo-editor-unofficial.init",
-		"onCommand:bitmelo-editor-unofficial.open",
-		"onCommand:bitmelo-editor-unofficial.syncCode"
+		"onCommand:bitmelo-editor-unofficial.open"
 	],
 	"main": "./out/extension",
 	"contributes": {
@@ -30,11 +30,6 @@
 			{
 				"command": "bitmelo-editor-unofficial.open",
 				"title": "Open Bitmelo Editor",
-				"category": "Bitmelo"
-			},
-			{
-				"command": "bitmelo-editor-unofficial.syncCode",
-				"title": "Sync Bitmelo Editor with code files",
 				"category": "Bitmelo"
 			}
 		]

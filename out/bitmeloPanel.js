@@ -2,9 +2,9 @@ const vscode = require("vscode");
 let bitmeloPanel = null;
 
 
-async function getBitmeloPanel(extensionUri, context, position, updater, reopener) {
+async function getBitmeloPanel(extensionUri, context, position, updater) {
 	if (bitmeloPanel === null) {
-		bitmeloPanel = new BitmeloPanel(extensionUri, context, position, updater, reopener);
+		bitmeloPanel = new BitmeloPanel(extensionUri, context, position, updater);
 	} else {
 		bitmeloPanel.revealAt(position);
 	}
@@ -15,11 +15,14 @@ function hasBitmeloPanel() {
 	return bitmeloPanel !== null;
 }
 
-function resetBitmeloPanel() {
-	if (bitmeloPanel !== null && bitmeloPanel.panel !== null) {
-		bitmeloPanel.panel.dispose();
+function ifBitmeloPanel(callback) {
+	if (bitmeloPanel !== null) {
+		if(bitmeloPanel.panel !== null && bitmeloPanel.isActive) {
+			callback(bitmeloPanel);
+		} else {
+			bitmeloPanel.onReload.push(callback)
+		}
 	}
-	bitmeloPanel = null;
 }
 
 class BitmeloPanel {
@@ -32,6 +35,7 @@ class BitmeloPanel {
 		this.project = null;
 		this.isActive = false;
 		this.allowMessagesAfter = Date.now();
+		this.onReload = [];
 		this.ensurePanel(position);
 	}
 
@@ -90,7 +94,10 @@ class BitmeloPanel {
 
 	reloadProject() {
 		this.setProject(this.project);
-		this.allowMessagesAfter = Date.now() + 1000;
+		this.allowMessagesAfter = Date.now() + 2000;
+		while (this.onReload.length > 0) {
+			this.onReload.pop()(this);
+		}
 	}
 
 	getProject() {
@@ -105,5 +112,5 @@ class BitmeloPanel {
 module.exports = {
 	getBitmeloPanel,
 	hasBitmeloPanel,
-	resetBitmeloPanel
+	ifBitmeloPanel
 }

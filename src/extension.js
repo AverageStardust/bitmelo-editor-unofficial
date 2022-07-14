@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const { getBitmeloPanel, hasBitmeloPanel, resetBitmeloPanel } = require("./bitmeloPanel.js");
+const { getBitmeloPanel, resetBitmeloPanel, ifBitmeloPanel } = require("./bitmeloPanel.js");
 let context = null;
 
 /**
@@ -8,20 +8,51 @@ let context = null;
 
 function activate(_context) {
 	context = _context;
+
 	context.subscriptions.push(
 		vscode.commands.registerCommand("bitmelo-editor-unofficial.init", initProject)
 	);
 	context.subscriptions.push(
 		vscode.commands.registerCommand("bitmelo-editor-unofficial.open", openProject)
 	);
-	context.subscriptions.push(
-		vscode.commands.registerCommand("bitmelo-editor-unofficial.syncCode", syncCode)
-	);
+
+	startWatcher();
 }
 
 function deactivate() { }
 
 
+
+function startWatcher() {
+	const watcher = vscode.workspace.createFileSystemWatcher(
+		new vscode.RelativePattern(
+			vscode.Uri.joinPath(getWorkspaceUri(), "code"),
+			"**/*.js"
+		)
+	);
+	watcher.onDidChange(onWatcherEvent);
+	watcher.onDidCreate(onWatcherEvent);
+	watcher.onDidDelete(onWatcherEvent);
+}
+
+
+async function onWatcherEvent(retry = true) {
+	let project;
+	try {
+		project = await importProjectCodeFiles();
+	} catch {
+		if (retry) {
+			setTimeout(() => onWatcherEvent(false), 100);
+		} else {
+			vscode.window
+				.showErrorMessage("Could not sync code.")
+		}
+		return;
+	}
+	ifBitmeloPanel((panel) => {
+		panel.setProject(project);
+	});
+}
 
 function initProject() {
 	resetBitmeloPanel();
@@ -31,7 +62,7 @@ function initProject() {
 		.then(async answer => {
 			if (answer !== "Yes") return;
 
-			const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Beside, updatePanel, openProject);
+			const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Beside, updatePanel);
 
 			allowUpdateAfter = Date.now() + 1000;
 
@@ -43,7 +74,7 @@ function initProject() {
 					await exportProjectCodeFiles(project);
 				} catch {
 					vscode.window
-						.showErrorMessage("Cound not save project.")
+						.showErrorMessage("Could not save project.")
 				}
 			}, 2000);
 		});
@@ -55,45 +86,12 @@ async function openProject() {
 		project = await loadProject(project);
 	} catch {
 		vscode.window
-			.showErrorMessage("Cound not load project.")
+			.showErrorMessage("Could not load project.")
 		return;
 	}
-	const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Active, updatePanel, openProject);
+	const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Active, updatePanel);
 	panel.setProject(project);
 	allowUpdateAfter = Date.now() + 2000;
-}
-
-/* async function exportCode() {
-	if (!hasBitmeloPanel()) {
-		vscode.window
-			.showWarningMessage("Open the Bitmelo Editor First.");
-		return;
-	}
-
-	const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Active, updatePanel, openProject);
-	const project = panel.getProject();
-	try {
-		await exportProjectCodeFiles(project);
-	} catch {
-		vscode.window
-			.showErrorMessage("Cound not save project code.")
-	}
-} */
-
-async function syncCode() {
-	if (!hasBitmeloPanel()) {
-		vscode.window
-			.showWarningMessage("Open the Bitmelo Editor First.");
-		return;
-	}
-
-	const panel = await getBitmeloPanel(context.extensionUri, context, vscode.ViewColumn.Active, updatePanel, openProject);
-	try {
-		await importProjectCodeFiles(panel);
-	} catch {
-		vscode.window
-			.showErrorMessage("Cound not load project code.")
-	}
 }
 
 let allowUpdateAfter = Date.now();
@@ -106,7 +104,10 @@ async function updatePanel(panel) {
 		if (result.changed) {
 			panel.setProject(result.foundProject);
 		} else {
-			saveProject(panel.getProject());
+			const project = panel.getProject();
+			if (project !== projectOnDisk) {
+				saveProject(project);
+			}
 		}
 	} catch {
 		return;
@@ -120,22 +121,6 @@ async function projectOnDiskChanged() {
 	const changed = foundProject !== projectOnDisk;
 	projectOnDisk = foundProject;
 	return { changed, foundProject };
-}
-
-function loadProject() {
-	const uri = vscode.Uri.joinPath(getWorkspaceUri(), "bitmeloExport.json");
-	return vscode.workspace.fs.readFile(uri)
-		.then((data) => data.toString());
-}
-
-function saveProject(project) {
-	if (project === projectOnDisk) return;
-	let uri;
-	uri = vscode.Uri.joinPath(getWorkspaceUri(), "bitmeloExport.json");
-	return vscode.workspace.fs.writeFile(uri,
-		Buffer.from(project)).then(() => {
-			projectOnDisk = project;
-		});
 }
 
 async function exportProjectCodeFiles(project) {
@@ -163,8 +148,7 @@ async function exportProjectCodeFiles(project) {
 	});
 }
 
-async function importProjectCodeFiles(panel) {
-	const project = JSON.parse(panel.getProject());
+async function importProjectCodeFiles() {
 	const scripts = [];
 
 	const codeFolderUri = vscode.Uri.joinPath(getWorkspaceUri(), "code");
@@ -190,7 +174,7 @@ async function importProjectCodeFiles(panel) {
 		}));
 	}
 
-	Promise.all(readFiles).then(() => {
+	return await Promise.all(readFiles).then(async () => {
 		for (let i = 0; i < scripts.length; i++) {
 			if (scripts[i]) continue;
 			scripts[i] = {
@@ -201,9 +185,28 @@ async function importProjectCodeFiles(panel) {
 				text: `\n// Script #${i} not found during import`
 			}
 		}
-		project.code.scripts = scripts;
-		panel.setProject(JSON.stringify(project));
+
+		const projectJSON = JSON.parse(await loadProject());
+		projectJSON.code.scripts = scripts;
+		const project = JSON.stringify(projectJSON);
+		await saveProject(project);
+		return project;
 	});
+}
+
+function loadProject() {
+	const uri = vscode.Uri.joinPath(getWorkspaceUri(), "bitmeloExport.json");
+	return vscode.workspace.fs.readFile(uri)
+		.then((data) => data.toString());
+}
+
+function saveProject(project) {
+	let uri;
+	uri = vscode.Uri.joinPath(getWorkspaceUri(), "bitmeloExport.json");
+	return vscode.workspace.fs.writeFile(uri,
+		Buffer.from(project)).then(() => {
+			projectOnDisk = project;
+		});
 }
 
 function getWorkspaceUri() {
